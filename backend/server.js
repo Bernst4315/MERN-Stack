@@ -7,6 +7,8 @@ const app = express(); //calls on express in ln 1
 
 //Global Middleware
 
+app.use(express.json()); //looks for data being sent to server and attaches it to req obj
+
 app.use((req, res, next) => {
     console.log(req.path, req.method);
     next();
