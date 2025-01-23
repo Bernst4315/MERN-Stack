@@ -1,6 +1,7 @@
 require("dotenv").config()
 
 const express = require("express");
+const workoutRoutes = require("./routes/workouts")
 const app = express(); //calls on express in ln 1
 
 
@@ -12,9 +13,7 @@ app.use((req, res, next) => {
 })
 
 // routes
-app.get("/", (req,res) => {
-    res.json({mssg: "welcome to app"});
-})
+app.use("/api/workouts", workoutRoutes)// this grabs all the routes in the workouts file and uses them
 
 //listen for requests
 //const port = 3000;
