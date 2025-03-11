@@ -2,6 +2,8 @@
 
 const express = require("express");
 const workoutRoutes = require("./routes/workouts")
+const mongoose = require("mongoose");
+
 const app = express(); //calls on express in ln 1
 
 
@@ -17,10 +19,21 @@ app.use((req, res, next) => {
 // routes
 app.use("/api/workouts", workoutRoutes)// this grabs all the routes in the workouts file and uses them
 
-//listen for requests
+//connect to db
+
+mongoose.connect(process.env.MONGO_URL)
+    .then(() => {
+
+        //listen for requests
 //const port = 3000;
 app.listen(process.env.PORT, () => {
     console.log("listening on port 3000")
 })
+
+    })
+    .catch((error) =>{
+        console.log(error)
+    }) 
+
 
 process.env
